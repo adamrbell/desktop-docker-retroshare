@@ -24,3 +24,6 @@ retroshare06 && \
 # clean up
 apt-get clean && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+EXPOSE 8080
+VOLUME /config /downloads
