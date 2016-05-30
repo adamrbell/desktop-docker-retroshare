@@ -47,8 +47,6 @@ wget http://freenet.mcnabhosting.com/python/pyshaper/pyshaper-0.1.3.tar.gz && \
 tar -xzvf pyshaper-0.1.3.tar.gz && \
 cd pyshaper-0.1.3 && \
 make install && \
-# tint2?
-apt-get install -y tint2 && \
 
 # clean up
 apt-get clean && \
