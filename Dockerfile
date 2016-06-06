@@ -1,4 +1,5 @@
-FROM hurricane/dockergui:x11rdp1.3
+FROM adamrbell/dockergui
+# ^^^ Forked from hurricane/dockergui:x11rdp1.3
 
 # set variables
 # User/Group Id gui app will be executed as default are 99 and 100
@@ -19,7 +20,33 @@ add-apt-repository ppa:retroshare/stable && \
 apt-get update && \ 
 apt-get install -y \
 gnome-themes-standard \
-retroshare06 && \
+# install retroshare
+retroshare06 \
+# install pyshaper dependencies
+build-essential \
+iproute2 \
+python \
+python-geoip \
+python-setuptools \
+subversion && \
+# install SQLObject
+cd /tmp && \
+svn co http://svn.colorstudy.com/SQLObject/branches/0.6/ && \
+cd 0.6 && \
+easy_install . && \
+python setup.py install && \
+# install ezsqlobject
+cd /tmp &&\ 
+wget http://freenet.mcnabhosting.com/python/ezsqlobject/ezsqlobject-0.1.1.tar.gz && \
+tar -xzvf ezsqlobject-0.1.1.tar.gz && \
+cd ezsqlobject-0.1.1 && \
+python setup.py install && \
+# download pyshaper to /tmp
+cd /tmp && \
+wget http://freenet.mcnabhosting.com/python/pyshaper/pyshaper-0.1.3.tar.gz && \
+tar -xzvf pyshaper-0.1.3.tar.gz && \
+cd pyshaper-0.1.3 && \
+make install && \
 
 # clean up
 apt-get clean && \
