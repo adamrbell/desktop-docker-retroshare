@@ -1,5 +1,4 @@
-FROM adamrbell/dockergui
-# ^^^ Forked from hurricane/dockergui:x11rdp1.3
+FROM linuxserver/docker-baseimage-guacgui
 
 # set variables
 # User/Group Id gui app will be executed as default are 99 and 100
