@@ -10,17 +10,25 @@ CMD ["/sbin/my_init"]
 # Add local files
 ADD src/ /
 
+#Install instructions from https://retroshare.cc/downloads.html
+RUN source /etc/os-release && \
+wget -qO - https://download.opensuse.org/repositories/network:/retroshare/xUbuntu_${VERSION_ID}/Release.key | sudo apt-key add - && \
+sudo sh -c "echo 'deb https://download.opensuse.org/repositories/network:/retroshare/xUbuntu_${VERSION_ID}/ /' >> /etc/apt/sources.list.d/retroshare_OBS.list" && \
+
 # repositories
-RUN echo 'deb http://archive.ubuntu.com/ubuntu trusty main universe restricted' > /etc/apt/sources.list && \
-echo 'deb http://archive.ubuntu.com/ubuntu trusty-updates main universe restricted' >> /etc/apt/sources.list && \
-add-apt-repository ppa:retroshare/stable && \
+echo 'deb http://ppa.launchpad.net/retroshare/stable/ubuntu bionic main' >> /etc/apt/sources.list && \
+echo 'deb-src http://ppa.launchpad.net/retroshare/stable/ubuntu bionic main' >> /etc/apt/sources.list && \
+
+#RUN echo 'deb http://archive.ubuntu.com/ubuntu bionic main universe restricted' > /etc/apt/sources.list && \
+#echo 'deb http://archive.ubuntu.com/ubuntu bionic-updates main universe restricted' >> /etc/apt/sources.list && \
+#add-apt-repository ppa:retroshare/stable && \
 
 # install dependencies
 apt-get update && \ 
 apt-get install -y \
 gnome-themes-standard \
 # install retroshare
-retroshare06 \
+retroshare \
 # install pyshaper dependencies
 build-essential \
 iproute2 \
