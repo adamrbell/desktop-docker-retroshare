@@ -41,7 +41,7 @@ wget http://freenet.mcnabhosting.com/python/ezsqlobject/ezsqlobject-0.1.1.tar.gz
 tar -xzvf ezsqlobject-0.1.1.tar.gz && \
 cd ezsqlobject-0.1.1 && \
 python setup.py install && \
-# download pyshaper to /tmp
+# download pyshaper to /tmp - https://unix.stackexchange.com/questions/83888/limit-outgoing-bandwidth-on-an-specific-interface
 cd /tmp && \
 wget http://freenet.mcnabhosting.com/python/pyshaper/pyshaper-0.1.3.tar.gz && \
 tar -xzvf pyshaper-0.1.3.tar.gz && \
